@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class article {
+@Table
+public class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

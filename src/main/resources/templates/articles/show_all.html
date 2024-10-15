@@ -13,7 +13,7 @@
 <!-- 우리가 작업할 공간 -->
 <body>
 <div layout:fragment="content" class="content">
-  <table class="table">
+  <table class="table" >
     <thead>
     <tr>
       <th scope="col">Id</th>
@@ -23,12 +23,12 @@
     </thead>
     <tbody>
     <div>
-      <tr>
-        <th scope="row">1</th>
+      <tr th:each="dto : ${list}" th:object="${dto}">
+        <th scope="row" th:text="*{id}">1</th>
         <td>
-          <a href="">제목111 </a>
+          <a th:href="@{/articles/{id}(id=*{id})}" th:text="*{title}">제목111 </a>
         </td>
-        <td>내용 1111</td>
+        <td th:text="*{content}">내용 1111</td>
       </tr>
     </div>
     </tbody>
