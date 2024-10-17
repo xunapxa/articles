@@ -1,39 +1,39 @@
 package com.my.articles.dto;
 
 import com.my.articles.entity.Article;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ArticleDto {
-
+public class ArticleDTO {
     private Long id;
     private String title;
     private String content;
+    private List<CommentDTO> comments = new ArrayList<>();
 
-    // entity-> dto
-    public static ArticleDto fromEntity(Article article) {
-        return new ArticleDto(
+    public static ArticleDTO fromArticle(Article article) {
+        return new ArticleDTO(
                 article.getId(),
                 article.getTitle(),
-                article.getContent()
+                article.getContent(),
+                article.getComments()
+                        .stream()
+                        .map(x->CommentDTO.fromEntity(x))
+                        .toList()
         );
     }
 
-    // dto -> entity
-    public static Article fromDto(ArticleDto dto) {
-        return new Article(
-                dto.getId(),
-                dto.getTitle(),
-                dto.getContent()
-        );
+    public static Article fromDto(ArticleDTO dto) {
+        Article article = new Article();
+        article.setId(dto.getId());
+        article.setTitle(dto.getTitle());
+        article.setContent(dto.getContent());
+        return article;
     }
-
 }

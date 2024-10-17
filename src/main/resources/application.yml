@@ -1,6 +1,4 @@
-#spring.application.name=articles
-
-#Mysql ????
+#MySql 셋팅
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -10,12 +8,15 @@ spring:
   sql:
     init:
       mode: never
-      # always : 매번, embedded : 내장 DB만 (h2DB 등), never : 모든 동작 안함
+      # always : 매번, embedded : 내장 DB만, never : 모든 동작 안함
   jpa:
-    defer-datasource-initialization:
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: validate
     properties:
-      hibernate:
+      hibernate :
         show_sql: true
         format_sql: true
+
+
+

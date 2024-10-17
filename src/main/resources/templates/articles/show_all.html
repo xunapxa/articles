@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="www.thymeleaf.org"
-      xmlns:layout="www.ultraq.net.nz/thymeleaf.layout"
+      xmlns:layout="www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
-<meta charset="UTF-8">
-<title>School Manager</title>
-<!--  전체 적용될 CSS  -->
-<th:block layout:fragment="css"></th:block>
+<head>
+  <meta charset="UTF-8">
+  <!--  <script src="/js/jquery.js"></script>-->
+</head>
 
-<!--  전체 적용될 스크립트  -->
-<th:block layout:fragment="script"></th:block>
-
-<!-- 우리가 작업할 공간 -->
+<!--  우리가 작업할 공간 -->
 <body>
 <div layout:fragment="content" class="content">
 
   <div th:unless="${msg == null}">
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong th:text="${msg}"></strong>
+      <strong th:text="${msg}">Holy guacamole!</strong>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   </div>
 
-  <table class="table" >
+  <table class="table">
     <thead>
     <tr>
       <th scope="col">Id</th>
@@ -31,7 +28,7 @@
     </thead>
     <tbody>
     <div>
-      <tr th:each="dto : ${list}" th:object="${dto}">
+      <tr th:each="article : ${articles}" th:object="${article}">
         <th scope="row" th:text="*{id}">1</th>
         <td>
           <a th:href="@{/articles/{id}(id=*{id})}" th:text="*{title}">제목111 </a>
@@ -43,5 +40,6 @@
   </table>
   <a href="/articles/new">New Article</a>
 </div>
+
 </body>
 </html>
